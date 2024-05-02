@@ -47,3 +47,55 @@
         ]
     }
     ```
+
+## EventBridge ルールの設定
+
+このLambda関数は、EventBridgeのルールによってトリガーされます。以下はその設定に関する情報です。
+
+### ルール名 1
+- ルール名: EC2-Auto-Start-Event
+- 説明: EC2インスタンスを指定の時間になったら起動するためのルール
+
+### ルールのイベントマッチャー
+- イベントパターン:
+  ```json
+  {
+    "source": ["aws.cloudwatch"],
+    "detail-type": ["Scheduled Event"],
+    "detail": {
+        "time": ["cron(0 18 * * ? *)"],
+        "resources": ["arn:aws:events:ap-northeast-1:********8776:rule/EC2-Auto-Start-Event"]
+    }
+  }
+  ```
+
+### 入力定数
+```json
+{
+  "Action": "start"
+}
+```
+
+### ルール名 2
+- ルール名: EC2-Auto-Stop-Event
+- 説明: EC2インスタンスを指定の時間になったら停止するためのルール
+
+### ルールのイベントマッチャー
+- イベントパターン:
+  ```json
+  {
+    "source": ["aws.cloudwatch"],
+    "detail-type": ["Scheduled Event"],
+    "detail": {
+        "time": ["cron(0 21 * * ? *)"],
+        "resources": ["arn:aws:events:ap-northeast-1:********8776:rule/EC2-Auto-Stop-Event"]
+    }
+  }
+  ```
+
+### 入力定数
+```json
+{
+  "Action": "stop"
+}
+```
