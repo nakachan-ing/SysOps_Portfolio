@@ -121,7 +121,7 @@ def send_email(text,sub,Tenant):
     }
 
     res = boto3.client('lambda').invoke(
-        FunctionName='arn:aws:lambda:ap-northeast-1:654654358776:function:Alarm-mail',
+        FunctionName='arn:aws:lambda:ap-northeast-1:********8776:function:Alarm-mail',
         InvocationType = 'Event', 
         Payload = json.dumps(params)
     )
