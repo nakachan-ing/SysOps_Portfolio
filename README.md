@@ -5,7 +5,7 @@
 このリポジトリは、SysOps（システム運用）に関連するスクリプトやドキュメントを管理するためのポートフォリオです。AWS、Azure、その他クラウドプラットフォームに関連するスクリプトや設定ファイル、テストドキュメントなどが含まれています。
 
 ## ディレクトリ構成
-
+```
 └── SysOps_Portfolio
 ├── AWS-SysOps-Portfolio
 │ └── Lambda_Functions
@@ -29,7 +29,7 @@
 └── Common
 ├── clean_Out.sh
 └── file_Archive.sh
-
+```
 
 ## ディレクトリ構成の説明
 
