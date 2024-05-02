@@ -72,5 +72,5 @@
         "time": ["cron(0 8 * * ? *)"],
         "resources": ["arn:aws:events:ap-northeast-1:********8776:rule/EC2-Alarm-Status-Monitor-Event"]
     }
-    }
+  }
   ```
