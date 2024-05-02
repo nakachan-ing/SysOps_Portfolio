@@ -53,3 +53,24 @@
         ]
     }
     ```
+
+## EventBridge ルールの設定
+
+このLambda関数は、EventBridgeのルールによってトリガーされます。以下はその設定に関する情報です。
+
+### ルール名
+- ルール名: EC2-Alarm-Status-Monitor-Event
+- 説明: EC2インスタンスのアラーム状態を監視するためのルール
+
+### ルールのイベントマッチャー
+- イベントパターン:
+  ```json
+  {
+    "source": ["aws.cloudwatch"],
+    "detail-type": ["Scheduled Event"],
+    "detail": {
+        "time": ["cron(0 8 * * ? *)"],
+        "resources": ["arn:aws:events:ap-northeast-1:********8776:rule/EC2-Alarm-Status-Monitor-Event"]
+    }
+    }
+  ```
