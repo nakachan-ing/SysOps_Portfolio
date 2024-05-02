@@ -1,8 +1,3 @@
-##################################################################################################################
-# スクリプト名      :Alarm-mail.py
-# スクリプト説明    :他のLambdaから実行されるメール通知用のLambda
-# 環境変数         :SEND_ADDRESS(epms.su@icloud.com), SEND_REGION(ap-northeast1), TO_ADDRESS(epms.su@icloud.com)
-##################################################################################################################
 import boto3
 import os
 from botocore.exceptions import ClientError
