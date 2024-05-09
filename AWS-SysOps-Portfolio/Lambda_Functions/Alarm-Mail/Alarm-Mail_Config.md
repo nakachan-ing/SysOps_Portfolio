@@ -11,9 +11,9 @@
 - Lambda関数: 任意のLambda関数内で「Alarm-mail」が呼び出された際、生成されたメール文を宛先に送信する
 
 ## 環境変数
-- SEND_ADDRESS: 送信元のメールアドレス
-- TO_ADDRESS: 送信先のメールアドレス
-- SEND_REGION: メール送信リージョン
+- `SEND_ADDRESS`: 送信元のメールアドレス
+- `TO_ADDRESS`: 送信先のメールアドレス
+- `SEND_REGION`: メール送信リージョン
 
 ## IAMロール
 - ロール名: Alarm-mail-role-t2lst202
