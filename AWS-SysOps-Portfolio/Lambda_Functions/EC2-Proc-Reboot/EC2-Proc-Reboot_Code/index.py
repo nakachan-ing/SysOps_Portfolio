@@ -17,7 +17,7 @@ def ssm_send_command(instanceId):
                 "commands": [
                     "/opt/shell/ProcChk.sh"
                 ],
-                "excutionTimeOut": ["3600"]
+                "executionTimeout": ["3600"]
             },
         )
         print(res)
@@ -36,7 +36,7 @@ def lambda_handler(event, context):
         
         print(metric_name)
         
-        if newState == "ALARM" and oldState =="OK":                                                                                 # (条件1)もし今のアラームステータスが「Alarm」で前のアラームステータスが「OK」なら処理を実行
+        if newState == "INSUFFICIENT_DATA" and oldState =="OK":                                                                     # (条件1)もし今のアラームステータスが「Alarm」で前のアラームステータスが「OK」なら処理を実行
             if metric_name=="procstat_lookup_pid_count":                                                                            # (条件2)もしメトリクス名が「procstat_lookup_pid_count」なら処理を実行
                 instanceId = event['detail']['configuration']['metrics'][0]['metricStat']['metric']['dimensions']['InstanceId']     # アラーム状態のインスタンスIDを取得する
                 ssm_send_command(instanceId)                                                                                        # ここでProcChk.shを実行
