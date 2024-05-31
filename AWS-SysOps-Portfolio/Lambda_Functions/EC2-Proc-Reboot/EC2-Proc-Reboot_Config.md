@@ -37,15 +37,7 @@
             "Resource": [
                 "arn:aws:logs:ap-northeast-1:********8776:log-group:/aws/lambda/EC2-Proc-Reboot:*"
             ]
-        }
-    ]
-}
-```
-- EC2インスタンスのIAMロール
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
+        },
         {
             "Sid": "AllowSendCommand",
             "Effect": "Allow",
@@ -59,7 +51,44 @@
     ]
 }
 ```
+- EC2インスタンスのIAMロール
+  - カスタムポリシー
+    ```json
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowSendCommand",
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:SendCommand",
+                    "ssm:ListCommands",
+                    "ssm:ListCommandInvocations"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+    ```
+  - 管理ポリシー
+    - AmazonSSMManagedInstanceCore
 
+## EventBridge ルールの設定
+
+このLambda関数は、EventBridgeのルールによってトリガーされます。以下はその設定に関する情報です。
+
+### ルール名 1
+- ルール名: EC2-Proc-Status-Change-Alarm
+- 説明: Cloudwatchアラームのステータスが変更されたら発火するルール
+
+### ルールのイベントマッチャー
+- イベントパターン:
+```json
+{
+  "source": ["aws.cloudwatch"],
+  "detail-type": ["CloudWatch Alarm State Change"]
+}
+```
 
 ## クローン実行に関する注意事項
 EC2-Proc-Reboot関数は、単体で実行することが可能。Cronジョブによる定期実行も想定される。詳細な設定内容についてはUsage.mdを参照。
